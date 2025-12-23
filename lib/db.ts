@@ -1,9 +1,20 @@
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import pg from 'pg';
+
+const { Pool } = pg;
 
 if (!process.env.DATABASE_URL) {
   throw new Error('DATABASE_URL is not defined');
 }
 
-const sql = neon(process.env.DATABASE_URL);
-export const db = drizzle(sql);
+// Use singleton pattern for the pool in development to prevent 
+// "too many connections" errors during hot-reloading
+const globalForDb = global as unknown as { dbPool: pg.Pool };
+
+const pool = globalForDb.dbPool || new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+if (process.env.NODE_ENV !== 'production') globalForDb.dbPool = pool;
+
+export const db = drizzle(pool);

@@ -1,17 +1,21 @@
+import { config } from 'dotenv';
+config({ path: '.env.local' });
+
 import { db } from "../lib/db";
-import { test } from "../db/schema";
+import { customers } from "../db/schema";
 import { sql } from "drizzle-orm";
 
 async function main() {
     console.log("Testing connection...");
     try {
         // Basic query
-        const result = await db.execute(sql`SELECT 1`);
-        console.log("Connection successful! Result:", result);
+        const result = await db.select().from(customers).limit(1);
+        console.log("Connection successful! Customers found:", result.length);
+        process.exit(0);
 
         // Attempt to insert? No, just select is enough for connectivity.
     } catch (error) {
-        console.error("Connection failed:", error);
+        console.error("Connection/Query failed:", error);
         process.exit(1);
     }
 }
