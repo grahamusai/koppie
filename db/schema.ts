@@ -1,63 +1,49 @@
 import {
-    pgTable,
-    uuid,
-    varchar,
+    sqliteTable,
     text,
-    timestamp,
-    pgEnum,
-} from "drizzle-orm/pg-core";
+    integer,
+} from "drizzle-orm/sqlite-core";
 
-export const customerTypeEnum = pgEnum("customer_type", [
-    "individual",
-    "business",
-]);
+export const customers = sqliteTable("customers", {
+    id: text("id").primaryKey(),
 
-export const customerStatusEnum = pgEnum("customer_status", [
-    "active",
-    "inactive",
-    "suspended",
-]);
-
-export const customers = pgTable("customers", {
-    id: uuid("id").defaultRandom().primaryKey(),
-
-    customerType: customerTypeEnum("customer_type").notNull(),
+    customerType: text("customer_type").notNull(),
 
     // Individual
-    firstName: varchar("first_name", { length: 100 }),
-    lastName: varchar("last_name", { length: 100 }),
+    firstName: text("first_name"),
+    lastName: text("last_name"),
 
     // Business
-    businessName: varchar("business_name", { length: 255 }),
+    businessName: text("business_name"),
 
     // Contact
-    email: varchar("email", { length: 255 }).notNull(),
-    phone: varchar("phone", { length: 50 }),
+    email: text("email").notNull(),
+    phone: text("phone"),
 
     // Address
-    addressLine1: varchar("address_line1", { length: 255 }),
-    addressLine2: varchar("address_line2", { length: 255 }),
-    city: varchar("city", { length: 100 }),
-    province: varchar("province", { length: 100 }),
-    postalCode: varchar("postal_code", { length: 20 }),
-    country: varchar("country", { length: 100 }).default("South Africa"),
+    addressLine1: text("address_line1"),
+    addressLine2: text("address_line2"),
+    city: text("city"),
+    province: text("province"),
+    postalCode: text("postal_code"),
+    country: text("country").default("South Africa"),
 
     // SA-specific
-    idNumber: varchar("id_number", { length: 20 }),
-    registrationNumber: varchar("registration_number", { length: 50 }),
-    vatNumber: varchar("vat_number", { length: 20 }),
-    taxNumber: varchar("tax_number", { length: 20 }),
+    idNumber: text("id_number"),
+    registrationNumber: text("registration_number"),
+    vatNumber: text("vat_number"),
+    taxNumber: text("tax_number"),
 
-    status: customerStatusEnum("status").default("active").notNull(),
+    status: text("status").default("active").notNull(),
 
     notes: text("notes"),
 
     // Ownership / auditing
-    createdBy: uuid("created_by"), // supabase auth.users.id
-    createdAt: timestamp("created_at", { withTimezone: true })
+    createdBy: text("created_by"), // supabase auth.users.id
+    createdAt: integer("created_at", { mode: 'timestamp' })
         .defaultNow()
         .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true })
+    updatedAt: integer("updated_at", { mode: 'timestamp' })
         .defaultNow()
         .notNull(),
 });

@@ -1,26 +1,12 @@
 {
   "version": "7",
-  "dialect": "postgresql",
+  "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
-      "version": "7",
-      "when": 1766221332332,
-      "tag": "0000_dry_maestro",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1766271735152,
-      "tag": "0001_bizarre_molecule_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1766272986148,
-      "tag": "0002_parallel_spacker_dave",
+      "version": "6",
+      "when": 1766486465587,
+      "tag": "0000_lowly_ultimatum",
       "breakpoints": true
     }
   ]

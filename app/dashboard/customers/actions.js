@@ -14,7 +14,7 @@ export async function getCustomers() {
             email: c.email,
             phone: c.phone || "",
             company: c.businessName || "",
-            type: c.customerType === 'business' ? 'Business' : 'Individual' as 'Business' | 'Individual',
+            type: c.customerType === 'business' ? 'Business' : 'Individual',
             status: c.status,
             createdDate: c.createdAt.toISOString().split('T')[0],
 
@@ -24,8 +24,8 @@ export async function getCustomers() {
             lastActivity: c.updatedAt.toISOString().split('T')[0],
             owner: "System"
         }))
-    } catch (error: unknown) {
-        const err = error as any
+    } catch (error) {
+        const err = error
         console.error("DB Error cause:", err.cause)
         if (err.cause) {
             console.error("Cause message:", err.cause.message)
