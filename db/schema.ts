@@ -47,3 +47,25 @@ export const customers = sqliteTable("customers", {
         .defaultNow()
         .notNull(),
 });
+
+export const projects = sqliteTable("projects", {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    description: text("description"),
+    customerId: text("customer_id").references(() => customers.id).notNull(),
+    status: text("status").default("active").notNull(),
+    priority: text("priority").default("medium"),
+    startDate: integer("start_date", { mode: 'timestamp' }),
+    endDate: integer("end_date", { mode: 'timestamp' }),
+    budget: integer("budget"),
+    notes: text("notes"),
+
+    // Ownership / auditing
+    createdBy: text("created_by"),
+    createdAt: integer("created_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+    updatedAt: integer("updated_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+});

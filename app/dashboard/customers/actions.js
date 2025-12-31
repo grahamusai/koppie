@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/db"
 import { customers } from "@/db/schema"
+import { revalidatePath } from "next/cache"
 
 export async function getCustomers() {
     try {
@@ -32,5 +33,41 @@ export async function getCustomers() {
             console.error("Cause code:", err.cause.code)
         }
         throw new Error(`Failed to fetch customers: ${err.cause?.message || err.message || String(error)}`)
+    }
+}
+
+export async function createCustomer(formData) {
+    try {
+        const customerData = {
+            id: crypto.randomUUID(),
+            customerType: formData.customerType,
+            firstName: formData.firstName || null,
+            lastName: formData.lastName || null,
+            businessName: formData.businessName || null,
+            email: formData.email,
+            phone: formData.phone || null,
+            addressLine1: formData.addressLine1 || null,
+            addressLine2: formData.addressLine2 || null,
+            city: formData.city || null,
+            province: formData.province || null,
+            postalCode: formData.postalCode || null,
+            country: formData.country || "South Africa",
+            idNumber: formData.idNumber || null,
+            registrationNumber: formData.registrationNumber || null,
+            vatNumber: formData.vatNumber || null,
+            taxNumber: formData.taxNumber || null,
+            status: formData.status,
+            notes: formData.notes || null,
+            createdBy: null, // For now, set to null since we're not using auth in local mode
+        }
+
+        await db.insert(customers).values(customerData)
+        
+        revalidatePath('/dashboard/customers')
+        
+        return { success: true }
+    } catch (error) {
+        console.error("Error creating customer:", error)
+        return { success: false, error: error.message }
     }
 }

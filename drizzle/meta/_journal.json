@@ -8,6 +8,13 @@
       "when": 1766486465587,
       "tag": "0000_lowly_ultimatum",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1767219786867,
+      "tag": "0001_shallow_betty_brant",
+      "breakpoints": true
     }
   ]
 }

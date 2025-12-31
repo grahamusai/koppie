@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,7 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card } from "@/components/ui/card"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
-import { supabase } from "@/lib/supabase"
+import { createCustomer } from "../actions"
+import { useRouter } from "next/navigation"
 
 type CustomerType = "individual" | "business"
 type CustomerStatus = "active" | "inactive" | "suspended"
@@ -19,63 +20,43 @@ type CustomerStatus = "active" | "inactive" | "suspended"
 export default function NewCustomerPage() {
     const [customerType, setCustomerType] = useState<CustomerType>("individual")
     const [status, setStatus] = useState<CustomerStatus>("active")
-    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isPending, startTransition] = useTransition()
+    const router = useRouter()
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitting(true);
 
         const formData = new FormData(e.currentTarget);
         const data = {
             customerType,
-            firstName: formData.get("firstName"),
-            lastName: formData.get("lastName"),
-            businessName: formData.get("businessName"),
-            email: formData.get("email"),
-            phone: formData.get("phone"),
-            addressLine1: formData.get("addressLine1"),
-            addressLine2: formData.get("addressLine2"),
-            city: formData.get("city"),
-            province: formData.get("province"),
-            postalCode: formData.get("postalCode"),
-            country: formData.get("country") || "South Africa",
-            idNumber: formData.get("idNumber"),
-            registrationNumber: formData.get("registrationNumber"),
-            vatNumber: formData.get("vatNumber"),
-            taxNumber: formData.get("taxNumber"),
+            firstName: formData.get("firstName") as string,
+            lastName: formData.get("lastName") as string,
+            businessName: formData.get("businessName") as string,
+            email: formData.get("email") as string,
+            phone: formData.get("phone") as string,
+            addressLine1: formData.get("addressLine1") as string,
+            addressLine2: formData.get("addressLine2") as string,
+            city: formData.get("city") as string,
+            province: formData.get("province") as string,
+            postalCode: formData.get("postalCode") as string,
+            country: formData.get("country") as string || "South Africa",
+            idNumber: formData.get("idNumber") as string,
+            registrationNumber: formData.get("registrationNumber") as string,
+            vatNumber: formData.get("vatNumber") as string,
+            taxNumber: formData.get("taxNumber") as string,
             status,
-            notes: formData.get("notes"),
+            notes: formData.get("notes") as string,
         };
 
-        try {
-            const { data: { session } } = await supabase.auth.getSession();
-            const token = session?.access_token;
-
-            const response = await fetch('/api/customers', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                // Success: Redirect to the customers list
-                window.location.href = '/dashboard/customers';
+        startTransition(async () => {
+            const result = await createCustomer(data)
+            if (result.success) {
+                router.push('/dashboard/customers')
             } else {
-                // Handle error (you could show a message to the user here)
-                const errorData = await response.json();
-                console.error('Failed to create customer:', errorData.error);
-                alert('Failed to create customer. Please try again.');
+                alert('Failed to create customer. Please try again.')
             }
-        } catch (error) {
-            console.error('Network error:', error);
-            alert('An error occurred. Please check your connection and try again.');
-        } finally {
-            setIsSubmitting(false);
-        }
+        })
     }
 
     return (
@@ -305,8 +286,8 @@ export default function NewCustomerPage() {
                             <Button type="button" variant="outline" size="lg" asChild className="sm:order-1 bg-transparent">
                                 <Link href="/customers">Cancel</Link>
                             </Button>
-                            <Button type="submit" size="lg" disabled={isSubmitting} className="sm:order-2">
-                                {isSubmitting ? "Creating Customer..." : "Create Customer"}
+                            <Button type="submit" size="lg" disabled={isPending} className="sm:order-2">
+                                {isPending ? "Creating Customer..." : "Create Customer"}
                             </Button>
                         </div>
                     </div>
