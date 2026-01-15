@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
 
         // Prepare the data to insert (matches your form and database schema)
         const newCustomer = {
+            id: crypto.randomUUID(),
             customerType: body.customerType,
             firstName: body.firstName,
             lastName: body.lastName,

@@ -16,11 +16,11 @@ export function ClientTabs({ clientId }: ClientTabsProps) {
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="border-1 border-gray-500 grid w-full grid-cols-5 lg:w-auto lg:inline-grid">
-          <TabsTrigger className='' value="overview">Overview</TabsTrigger>
-          <TabsTrigger className='' value="activity">Activity</TabsTrigger>
-          <TabsTrigger className='' value="jobs">Jobs</TabsTrigger>
-          <TabsTrigger className='' value="invoices">Invoices</TabsTrigger>
-          <TabsTrigger className='' value="documents">Documents</TabsTrigger>
+          <TabsTrigger   value="overview">Overview</TabsTrigger>
+          <TabsTrigger   value="activity">Activity</TabsTrigger>
+          <TabsTrigger   value="jobs">Jobs</TabsTrigger>
+          <TabsTrigger   value="invoices">Invoices</TabsTrigger>
+          <TabsTrigger   value="documents">Documents</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">

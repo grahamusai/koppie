@@ -91,11 +91,11 @@ export function ActivityTab({ clientId }: ActivityTabProps) {
   return (
     <div className="space-y-6">
       {/* Add Note Section */}
-      <Card>
-        <CardHeader>
+      <Card className="">
+        <CardHeader className="">
           <CardTitle>Add Note</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="">
           <div className="space-y-4">
             <Textarea
               placeholder="Write a note about this client..."
@@ -111,11 +111,11 @@ export function ActivityTab({ clientId }: ActivityTabProps) {
       </Card>
 
       {/* Timeline */}
-      <Card>
-        <CardHeader>
+      <Card className="">
+        <CardHeader className="">
           <CardTitle>Activity Timeline</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="">
           <div className="relative space-y-4 pl-6">
             {/* Timeline line */}
             <div className="absolute left-2 top-2 bottom-2 w-px bg-border" />

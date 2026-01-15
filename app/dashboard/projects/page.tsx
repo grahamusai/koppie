@@ -90,7 +90,7 @@ const Projects = () => {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Projects</h1>
-        <Button className='' asChild>
+        <Button   asChild>
           <Link href="/dashboard/projects/new">New Project</Link>
         </Button>
       </div>
@@ -112,12 +112,12 @@ const Projects = () => {
               <SelectTrigger className="w-32">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
-              <SelectContent className=''>
-                <SelectItem className='' value="all">All Status</SelectItem>
-                <SelectItem className='' value="active">Active</SelectItem>
-                <SelectItem className='' value="inactive">Inactive</SelectItem>
-                <SelectItem className='' value="completed">Completed</SelectItem>
-                <SelectItem className='' value="on-hold">On Hold</SelectItem>
+              <SelectContent  >
+                <SelectItem   value="all">All Status</SelectItem>
+                <SelectItem   value="active">Active</SelectItem>
+                <SelectItem   value="inactive">Inactive</SelectItem>
+                <SelectItem   value="completed">Completed</SelectItem>
+                <SelectItem   value="on-hold">On Hold</SelectItem>
               </SelectContent>
             </Select>
 
@@ -125,15 +125,15 @@ const Projects = () => {
               <SelectTrigger className="w-32">
                 <SelectValue placeholder="Priority" />
               </SelectTrigger>
-              <SelectContent className=''>
-                <SelectItem className='' value="all">All Priority</SelectItem>
-                <SelectItem className='' value="low">Low</SelectItem>
-                <SelectItem className='' value="medium">Medium</SelectItem>
-                <SelectItem className='' value="high">High</SelectItem>
+              <SelectContent  >
+                <SelectItem   value="all">All Priority</SelectItem>
+                <SelectItem   value="low">Low</SelectItem>
+                <SelectItem   value="medium">Medium</SelectItem>
+                <SelectItem   value="high">High</SelectItem>
               </SelectContent>
             </Select>
 
-            <Button className='' variant="outline" onClick={clearFilters}>
+            <Button   variant="outline" onClick={clearFilters}>
               Clear
             </Button>
           </div>
@@ -180,12 +180,12 @@ const Projects = () => {
                   <TableCell className="font-medium">{project.name}</TableCell>
                   <TableCell>{project.customerName}</TableCell>
                   <TableCell>
-                    <Badge className='' variant={project.status === 'active' ? 'default' : 'secondary'}>
+                    <Badge   variant={project.status === 'active' ? 'default' : 'secondary'}>
                       {project.status}
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Badge className='' variant={
+                    <Badge   variant={
                       project.priority === 'high' ? 'destructive' :
                         project.priority === 'medium' ? 'default' : 'secondary'
                     }>
@@ -198,7 +198,7 @@ const Projects = () => {
                     {project.budget ? `R${project.budget.toLocaleString()}` : '-'}
                   </TableCell>
                   <TableCell>
-                    <Button className='' variant="ghost" size="sm" asChild>
+                    <Button   variant="ghost" size="sm" asChild>
                       <Link href={`/dashboard/projects/${project.id}`}>View</Link>
                     </Button>
                   </TableCell>

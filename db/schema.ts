@@ -69,3 +69,58 @@ export const projects = sqliteTable("projects", {
         .defaultNow()
         .notNull(),
 });
+
+export const invoices = sqliteTable("invoices", {
+    id: text("id").primaryKey(),
+    invoiceNumber: text("invoice_number").notNull(),
+    customerId: text("customer_id").references(() => customers.id).notNull(),
+    projectId: text("project_id").references(() => projects.id),
+    amount: integer("amount").notNull(), // Stored in cents
+    status: text("status").default("draft").notNull(),
+    issueDate: integer("issue_date", { mode: 'timestamp' }).notNull(),
+    dueDate: integer("due_date", { mode: 'timestamp' }),
+    description: text("description"),
+    notes: text("notes"),
+
+    // Ownership / auditing
+    createdBy: text("created_by"),
+    createdAt: integer("created_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+    updatedAt: integer("updated_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+});
+
+export const taskColumns = sqliteTable("task_columns", {
+    id: text("id").primaryKey(),
+    title: text("title").notNull(),
+    position: integer("position").notNull(),
+    createdAt: integer("created_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+    updatedAt: integer("updated_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+});
+
+export const tasks = sqliteTable("tasks", {
+    id: text("id").primaryKey(),
+    title: text("title").notNull(),
+    description: text("description"),
+    assignee: text("assignee"),
+    dueDate: integer("due_date", { mode: 'timestamp' }),
+    priority: text("priority").default("medium").notNull(),
+    columnId: text("column_id").references(() => taskColumns.id).notNull(),
+    position: integer("position").notNull(),
+    archived: integer("archived", { mode: 'boolean' }).default(false).notNull(),
+
+    // Ownership / auditing
+    createdBy: text("created_by"),
+    createdAt: integer("created_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+    updatedAt: integer("updated_at", { mode: 'timestamp' })
+        .defaultNow()
+        .notNull(),
+});

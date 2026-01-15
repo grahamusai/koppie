@@ -3,7 +3,8 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 function Card({
-  className,
+
+  className = undefined,
   ...props
 }) {
   return (
@@ -12,13 +13,15 @@ function Card({
       className={cn(
         "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
         className
+
       )}
       {...props} />
   );
 }
 
 function CardHeader({
-  className,
+
+  className = undefined,
   ...props
 }) {
   return (
@@ -33,7 +36,8 @@ function CardHeader({
 }
 
 function CardTitle({
-  className,
+
+  className = undefined,
   ...props
 }) {
   return (
@@ -45,7 +49,8 @@ function CardTitle({
 }
 
 function CardDescription({
-  className,
+
+  className = undefined,
   ...props
 }) {
   return (
@@ -57,7 +62,8 @@ function CardDescription({
 }
 
 function CardAction({
-  className,
+
+  className = undefined,
   ...props
 }) {
   return (
@@ -72,14 +78,16 @@ function CardAction({
 }
 
 function CardContent({
-  className,
+
+  className = undefined,
   ...props
 }) {
   return (<div data-slot="card-content" className={cn("px-6", className)} {...props} />);
 }
 
 function CardFooter({
-  className,
+
+  className = undefined,
   ...props
 }) {
   return (

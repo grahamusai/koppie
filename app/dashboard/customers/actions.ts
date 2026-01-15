@@ -3,8 +3,9 @@
 import { db } from "@/lib/db"
 import { customers } from "@/db/schema"
 import { revalidatePath } from "next/cache"
+import { Customer } from "./components/datatable"
 
-export async function getCustomers() {
+export async function getCustomers(): Promise<Customer[]> {
     try {
         const rawData = await db.select().from(customers)
 
@@ -15,8 +16,8 @@ export async function getCustomers() {
             email: c.email,
             phone: c.phone || "",
             company: c.businessName || "",
-            type: c.customerType === 'business' ? 'Business' : 'Individual',
-            status: c.status,
+            type: (c.customerType === 'business' ? 'Business' : 'Individual') as "Business" | "Individual",
+            status: (c.status === 'active' ? 'Active' : c.status === 'prospect' ? 'Prospect' : 'Inactive') as "Active" | "Prospect" | "Inactive",
             createdDate: c.createdAt.toISOString().split('T')[0],
 
             // Fill missing fields with default values

@@ -66,9 +66,9 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
         <Card className="p-6 max-w-full">
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                    <Label className='' htmlFor="name">Project Name *</Label>
+                    <Label   htmlFor="name">Project Name *</Label>
                     <Input
-                    className=''
+                     
                         id="name"
                         name="name"
                         type="text"
@@ -78,9 +78,9 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className='' htmlFor="description">Description</Label>
+                    <Label   htmlFor="description">Description</Label>
                     <Textarea
-                    className=''
+                     
                         id="description"
                         name="description"
                         placeholder="Project description..."
@@ -89,7 +89,7 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className='' htmlFor="customerId">Customer *</Label>
+                    <Label   htmlFor="customerId">Customer *</Label>
                     <div className="space-y-2">
                         <Input
                             type="text"
@@ -99,17 +99,17 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
                             className="mb-2"
                         />
                         <Select name="customerId" required>
-                            <SelectTrigger className=''>
+                            <SelectTrigger  >
                                 <SelectValue placeholder="Select a customer" />
                             </SelectTrigger>
-                            <SelectContent className=''>
+                            <SelectContent  >
                                 {filteredCustomers.length === 0 ? (
                                     <div className="p-2 text-sm text-muted-foreground">
                                         {customerSearch ? "No customers found matching your search" : "No customers available"}
                                     </div>
                                 ) : (
                                     filteredCustomers.map((customer) => (
-                                        <SelectItem className='' key={customer.id} value={customer.id}>
+                                        <SelectItem   key={customer.id} value={customer.id}>
                                             {customer.name} ({customer.email})
                                         </SelectItem>
                                     ))
@@ -121,30 +121,30 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
 
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <Label className='' htmlFor="status">Status</Label>
+                        <Label   htmlFor="status">Status</Label>
                         <Select value={status} onValueChange={(value) => setStatus(value as ProjectStatus)}>
-                            <SelectTrigger className=''>
+                            <SelectTrigger  >
                                 <SelectValue />
                             </SelectTrigger>
-                            <SelectContent className=''>
-                                <SelectItem className='' value="active">Active</SelectItem>
-                                <SelectItem className='' value="inactive">Inactive</SelectItem>
-                                <SelectItem className='' value="completed">Completed</SelectItem>
-                                <SelectItem className='' value="on-hold">On Hold</SelectItem>
+                            <SelectContent  >
+                                <SelectItem   value="active">Active</SelectItem>
+                                <SelectItem   value="inactive">Inactive</SelectItem>
+                                <SelectItem   value="completed">Completed</SelectItem>
+                                <SelectItem   value="on-hold">On Hold</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
 
                     <div className="space-y-2">
-                        <Label className='' htmlFor="priority">Priority</Label>
+                        <Label   htmlFor="priority">Priority</Label>
                         <Select value={priority} onValueChange={(value) => setPriority(value as ProjectPriority)}>
-                            <SelectTrigger className=''>
+                            <SelectTrigger  >
                                 <SelectValue />
                             </SelectTrigger>
-                            <SelectContent className=''>
-                                <SelectItem className='' value="low">Low</SelectItem>
-                                <SelectItem className='' value="medium">Medium</SelectItem>
-                                <SelectItem className='' value="high">High</SelectItem>
+                            <SelectContent  >
+                                <SelectItem   value="low">Low</SelectItem>
+                                <SelectItem   value="medium">Medium</SelectItem>
+                                <SelectItem   value="high">High</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -152,9 +152,9 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
 
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <Label className='' htmlFor="startDate">Start Date</Label>
+                        <Label   htmlFor="startDate">Start Date</Label>
                         <Input
-                        className=''
+                         
                             id="startDate"
                             name="startDate"
                             type="date"
@@ -162,9 +162,9 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
                     </div>
 
                     <div className="space-y-2">
-                        <Label className='' htmlFor="endDate">End Date</Label>
+                        <Label   htmlFor="endDate">End Date</Label>
                         <Input
-                        className=''
+                         
                             id="endDate"
                             name="endDate"
                             type="date"
@@ -173,9 +173,9 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className='' htmlFor="budget">Budget (ZAR)</Label>
+                    <Label   htmlFor="budget">Budget (ZAR)</Label>
                     <Input
-                    className=''
+                     
                         id="budget"
                         name="budget"
                         type="number"
@@ -185,9 +185,9 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className='' htmlFor="notes">Notes</Label>
+                    <Label   htmlFor="notes">Notes</Label>
                     <Textarea
-                    className=''
+                     
                         id="notes"
                         name="notes"
                         placeholder="Additional notes..."
@@ -196,10 +196,10 @@ export default function NewProjectForm({ customers }: NewProjectFormProps) {
                 </div>
 
                 <div className="flex gap-4">
-                    <Button className='' type="submit" disabled={isPending}>
+                    <Button   type="submit" disabled={isPending}>
                         {isPending ? "Creating..." : "Create Project"}
                     </Button>
-                    <Button className='' type="button" variant="outline" onClick={() => router.back()}>
+                    <Button   type="button" variant="outline" onClick={() => router.back()}>
                         Cancel
                     </Button>
                 </div>

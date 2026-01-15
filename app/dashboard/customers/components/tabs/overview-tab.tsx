@@ -116,7 +116,7 @@ export function OverviewTab({ clientId }: OverviewTabProps) {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">Overall Status</span>
-              <Badge className="bg-accent text-accent-foreground">Healthy</Badge>
+              <Badge variant="secondary" className="bg-accent text-accent-foreground">Healthy</Badge>
             </div>
           </div>
         </CardContent>

@@ -166,10 +166,10 @@ export const columns: ColumnDef<Customer>[] = [
               Copy customer ID
             </DropdownMenuItem>
             <DropdownMenuSeparator className="" />
-            <DropdownMenuItem className='' inset> <Link href='/dashboard/customers/profile/01'>View</Link></DropdownMenuItem>
-            <DropdownMenuItem className='' inset>Edit</DropdownMenuItem>
-            <DropdownMenuItem className='' inset>Add activity</DropdownMenuItem>
-            <DropdownMenuItem className='' inset>Create invoice / job</DropdownMenuItem>
+            <DropdownMenuItem   inset> <Link href='/dashboard/customers/profile/01'>View</Link></DropdownMenuItem>
+            <DropdownMenuItem   inset>Edit</DropdownMenuItem>
+            <DropdownMenuItem   inset>Add activity</DropdownMenuItem>
+            <DropdownMenuItem   inset>Create invoice / job</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -306,7 +306,7 @@ export default function DataTable({
         </div>
         <div className="space-x-2">
           <Button
-            className=''
+             
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
@@ -315,7 +315,7 @@ export default function DataTable({
             Previous
           </Button>
           <Button
-            className=''
+             
             variant="outline"
             size="sm"
             onClick={() => table.nextPage()}

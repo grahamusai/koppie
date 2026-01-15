@@ -60,27 +60,27 @@ export default function CustomersView({data}: {data: Customer[]}) {
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Filter by status" />
                         </SelectTrigger>
-                        <SelectContent className=''>
-                            <SelectItem className='' value="all-statuses">All Statuses</SelectItem>
-                            <SelectItem className='' value="Active">Active</SelectItem>
-                            <SelectItem className='' value="Prospect">Prospect</SelectItem>
-                            <SelectItem className='' value="Inactive">Inactive</SelectItem>
+                        <SelectContent  >
+                            <SelectItem   value="all-statuses">All Statuses</SelectItem>
+                            <SelectItem   value="Active">Active</SelectItem>
+                            <SelectItem   value="Prospect">Prospect</SelectItem>
+                            <SelectItem   value="Inactive">Inactive</SelectItem>
                         </SelectContent>
                     </Select>
                     <Select value={ownerFilter} onValueChange={setOwnerFilter}>
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Filter by owner" />
                         </SelectTrigger>
-                        <SelectContent className=''>
-                            <SelectItem className='' value="Alice Smith">Alice Smith</SelectItem>
-                            <SelectItem className='' value="all-owners">All Owners</SelectItem>
-                            <SelectItem className='' value="Bob Johnson">Bob Johnson</SelectItem>
-                            <SelectItem className='' value="Charlie Brown">Charlie Brown</SelectItem>
+                        <SelectContent  >
+                            <SelectItem   value="Alice Smith">Alice Smith</SelectItem>
+                            <SelectItem   value="all-owners">All Owners</SelectItem>
+                            <SelectItem   value="Bob Johnson">Bob Johnson</SelectItem>
+                            <SelectItem   value="Charlie Brown">Charlie Brown</SelectItem>
                         </SelectContent>
                     </Select>
                     <div className="flex items-center space-x-2">
                         <Checkbox
-                            className=''
+                             
                             id="hasOutstanding"
                             checked={hasOutstanding}
                             onCheckedChange={(checked) => setHasOutstanding(!!checked)}
@@ -102,7 +102,7 @@ export default function CustomersView({data}: {data: Customer[]}) {
                                 Columns <ChevronDown />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className=''>
+                        <DropdownMenuContent align="end"  >
                             {/* Column visibility logic can be added here if needed, but it's now in DataTable */}
                         </DropdownMenuContent>
                     </DropdownMenu>

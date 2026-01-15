@@ -33,7 +33,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-, "app/dashboard/customers/actions.js"  ],
+, "app/dashboard/customers/actions.js", "app/dashboard/reports/page.jsx", "scripts/check-tables.js", "app/dashboard/reports/actions.js", "app/dashboard/tasks/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

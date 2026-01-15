@@ -87,14 +87,14 @@ export default function NewCustomerPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label className='' htmlFor="customerType">Type *</Label>
+                                    <Label htmlFor="customerType">Type *</Label>
                                     <Select value={customerType} onValueChange={(value) => setCustomerType(value as CustomerType)}>
-                                        <SelectTrigger className='' id="customerType">
+                                        <SelectTrigger id="customerType">
                                             <SelectValue />
                                         </SelectTrigger>
-                                        <SelectContent className=''>
-                                            <SelectItem className='' value="individual">Individual</SelectItem>
-                                            <SelectItem className='' value="business">Business</SelectItem>
+                                        <SelectContent  >
+                                            <SelectItem value="individual">Individual</SelectItem>
+                                            <SelectItem value="business">Business</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -118,18 +118,18 @@ export default function NewCustomerPage() {
                                 {customerType === "individual" ? (
                                     <div className="grid gap-4 md:grid-cols-2">
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="firstName">First Name</Label>
-                                            <Input className='' type='text' id="firstName" name="firstName" placeholder="John" maxLength={100} />
+                                            <Label htmlFor="firstName">First Name</Label>
+                                            <Input type='text' id="firstName" name="firstName" placeholder="John" maxLength={100} />
                                         </div>
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="lastName">Last Name</Label>
-                                            <Input className='' type='text' id="lastName" name="lastName" placeholder="Doe" maxLength={100} />
+                                            <Label htmlFor="lastName">Last Name</Label>
+                                            <Input type='text' id="lastName" name="lastName" placeholder="Doe" maxLength={100} />
                                         </div>
                                     </div>
                                 ) : (
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="businessName">Business Name</Label>
-                                        <Input className='' type='text' id="businessName" name="businessName" placeholder="Acme Corporation" maxLength={255} />
+                                        <Label htmlFor="businessName">Business Name</Label>
+                                        <Input type='text' id="businessName" name="businessName" placeholder="Acme Corporation" maxLength={255} />
                                     </div>
                                 )}
                             </div>
@@ -145,9 +145,9 @@ export default function NewCustomerPage() {
 
                                 <div className="grid gap-4 md:grid-cols-2">
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="email">Email Address *</Label>
+                                        <Label htmlFor="email">Email Address *</Label>
                                         <Input
-                                            className=''
+                                             
                                             id="email"
                                             name="email"
                                             type="email"
@@ -157,8 +157,8 @@ export default function NewCustomerPage() {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="phone">Phone Number</Label>
-                                        <Input className='' type='tel' id="phone" name="phone" placeholder="+27 12 345 6789" maxLength={50} />
+                                        <Label htmlFor="phone">Phone Number</Label>
+                                        <Input type='tel' id="phone" name="phone" placeholder="+27 12 345 6789" maxLength={50} />
                                     </div>
                                 </div>
                             </div>
@@ -174,31 +174,31 @@ export default function NewCustomerPage() {
 
                                 <div className="space-y-4">
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="addressLine1">Address Line 1</Label>
-                                        <Input className='' type='text' id="addressLine1" name="addressLine1" placeholder="123 Main Street" maxLength={255} />
+                                        <Label htmlFor="addressLine1">Address Line 1</Label>
+                                        <Input type='text' id="addressLine1" name="addressLine1" placeholder="123 Main Street" maxLength={255} />
                                     </div>
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="addressLine2">Address Line 2</Label>
-                                        <Input className='' type='text' id="addressLine2" name="addressLine2" placeholder="Apt 4B" maxLength={255} />
+                                        <Label htmlFor="addressLine2">Address Line 2</Label>
+                                        <Input type='text' id="addressLine2" name="addressLine2" placeholder="Apt 4B" maxLength={255} />
                                     </div>
                                     <div className="grid gap-4 md:grid-cols-2">
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="city">City</Label>
-                                            <Input className='' type='text' id="city" name="city" placeholder="Cape Town" maxLength={100} />
+                                            <Label htmlFor="city">City</Label>
+                                            <Input type='text' id="city" name="city" placeholder="Cape Town" maxLength={100} />
                                         </div>
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="province">Province</Label>
-                                            <Input className='' type='text' id="province" name="province" placeholder="Western Cape" maxLength={100} />
+                                            <Label htmlFor="province">Province</Label>
+                                            <Input type='text' id="province" name="province" placeholder="Western Cape" maxLength={100} />
                                         </div>
                                     </div>
                                     <div className="grid gap-4 md:grid-cols-2">
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="postalCode">Postal Code</Label>
-                                            <Input className='' type='text' id="postalCode" name="postalCode" placeholder="8001" maxLength={20} />
+                                            <Label htmlFor="postalCode">Postal Code</Label>
+                                            <Input type='text' id="postalCode" name="postalCode" placeholder="8001" maxLength={20} />
                                         </div>
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="country">Country</Label>
-                                            <Input className='' type='text' id="country" name="country" defaultValue="South Africa" maxLength={100} />
+                                            <Label htmlFor="country">Country</Label>
+                                            <Input type='text' id="country" name="country" defaultValue="South Africa" maxLength={100} />
                                         </div>
                                     </div>
                                 </div>
@@ -216,15 +216,15 @@ export default function NewCustomerPage() {
                                 <div className="grid gap-4 md:grid-cols-2">
                                     {customerType === "individual" && (
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="idNumber">ID Number</Label>
-                                            <Input className='' type='text' id="idNumber" name="idNumber" placeholder="0000000000000" maxLength={20} />
+                                            <Label htmlFor="idNumber">ID Number</Label>
+                                            <Input type='text' id="idNumber" name="idNumber" placeholder="0000000000000" maxLength={20} />
                                         </div>
                                     )}
                                     {customerType === "business" && (
                                         <div className="space-y-2">
-                                            <Label className='' htmlFor="registrationNumber">Registration Number</Label>
+                                            <Label htmlFor="registrationNumber">Registration Number</Label>
                                             <Input
-                                                className=''
+                                                 
                                                 type='text'
                                                 id="registrationNumber"
                                                 name="registrationNumber"
@@ -234,12 +234,12 @@ export default function NewCustomerPage() {
                                         </div>
                                     )}
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="vatNumber">VAT Number</Label>
-                                        <Input className='' type='text' id="vatNumber" name="vatNumber" placeholder="4123456789" maxLength={20} />
+                                        <Label htmlFor="vatNumber">VAT Number</Label>
+                                        <Input type='text' id="vatNumber" name="vatNumber" placeholder="4123456789" maxLength={20} />
                                     </div>
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="taxNumber">Tax Number</Label>
-                                        <Input className='' type='text' id="taxNumber" name="taxNumber" placeholder="0123456789" maxLength={20} />
+                                        <Label htmlFor="taxNumber">Tax Number</Label>
+                                        <Input type='text' id="taxNumber" name="taxNumber" placeholder="0123456789" maxLength={20} />
                                     </div>
                                 </div>
                             </div>
@@ -255,22 +255,22 @@ export default function NewCustomerPage() {
 
                                 <div className="space-y-4">
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="status">Status *</Label>
+                                        <Label htmlFor="status">Status *</Label>
                                         <Select value={status} onValueChange={(value) => setStatus(value as CustomerStatus)}>
-                                            <SelectTrigger className='' id="status">
+                                            <SelectTrigger id="status">
                                                 <SelectValue />
                                             </SelectTrigger>
-                                            <SelectContent className=''>
-                                                <SelectItem className='' value="active">Active</SelectItem>
-                                                <SelectItem className='' value="inactive">Inactive</SelectItem>
-                                                <SelectItem className='' value="suspended">Suspended</SelectItem>
+                                            <SelectContent  >
+                                                <SelectItem value="active">Active</SelectItem>
+                                                <SelectItem value="inactive">Inactive</SelectItem>
+                                                <SelectItem value="suspended">Suspended</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </div>
                                     <div className="space-y-2">
-                                        <Label className='' htmlFor="notes">Notes</Label>
+                                        <Label htmlFor="notes">Notes</Label>
                                         <Textarea
-                                            className=''
+                                             
                                             id="notes"
                                             name="notes"
                                             placeholder="Add any additional notes about this customer..."
