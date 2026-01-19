@@ -1,68 +1,154 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { TypingAnimation } from "@/components/typing-animation";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation"; // <-- Change this import
+
+const features = [
+  "AI-Powered Invoicing",
+  "Smart CRM Analytics",
+  "Automated Workflows",
+  "Cash Flow Predictions",
+  "Client Insights",
+  "Revenue Forecasting",
+];
+
 export default function LandingPage() {
+  const router = useRouter(); // <-- Add parentheses here to actually call the hook
+
+  const handleGetStarted = () => {
+    router.push("/dashboard");
+  };
+
   return (
-    <div className="min-h-screen w-full bg-white flex flex-col">
-      {/* Navigation */}
-      <nav className="w-full px-8 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <div className="grid grid-cols-2 gap-0.5">
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-              <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-            </div>
-          </div>
-          <span className="text-xl font-semibold text-gray-900">
-            ChronoTask
+    <main className="h-screen w-screen overflow-hidden bg-background flex items-center justify-center relative">
+      {/* Subtle animated background elements */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.03 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+      >
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 20, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-foreground blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, -20, 0],
+            y: [0, 20, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 rounded-full bg-foreground blur-3xl"
+        />
+      </motion.div>
+
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        {/* Logo/Brand */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-8"
+        >
+          <span className="font-serif text-lg tracking-widest text-muted-foreground uppercase">
+            Koppie AI Dashboard
           </span>
-        </div>
+        </motion.div>
 
-        <div className="flex items-center gap-8">
-          <a href="#" className="text-gray-700 hover:text-gray-900 transition">
-            Features
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 transition">
-            Solutions
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 transition">
-            Resources
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 transition">
-            Pricing
-          </a>
-        </div>
+        {/* Main Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground leading-tight"
+        >
+          <span className="block mb-2">The Future of</span>
+          <span className="block h-[1.2em]">
+            <TypingAnimation
+              words={features}
+              typingSpeed={80}
+              deletingSpeed={40}
+              pauseDuration={2500}
+            />
+          </span>
+        </motion.h1>
 
-        <div className="flex items-center gap-4">
-          <button className="text-gray-700 hover:text-gray-900 transition">
-            Sign in
-          </button>
-          <button className="px-5 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
-            Get demo
-          </button>
-        </div>
-      </nav>
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          className="mt-8 text-lg md:text-xl text-muted-foreground font-sans max-w-2xl mx-auto leading-relaxed"
+        >
+          Transform your business with intelligent automation. One platform for
+          CRM, invoicing, and financial insights.
+        </motion.p>
 
-      {/* Main Content */}
-      <main className="flex-1 flex items-start justify-center px-12 pt-16 pb-12">
-        <div className="w-full flex-1 bg-gray-100 rounded-3xl px-16 py-20 flex flex-col items-center justify-center">
-          <h1 className="text-center mb-8">
-            <div className="text-6xl font-bold text-gray-900 mb-2">
-              Think, plan, and track
-            </div>
-            <div className="text-6xl font-bold text-gray-400">
-              all in one place
-            </div>
-          </h1>
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Button
+              onClick={handleGetStarted}
+              size="lg"
+              className="font-sans text-base px-8 py-6 rounded-full"
+            >
+              Get Started Free
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </motion.span>
+            </Button>
+          </motion.div>
 
-          <p className="text-gray-600 text-lg mb-10 text-center max-w-xl">
-            Efficiently manage your tasks and boost productivity.
-          </p>
+          {/* <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Button
+              variant="outline"
+              size="lg"
+              className="font-sans text-base px-8 py-6 rounded-full border-foreground/20 hover:bg-foreground/5 bg-transparent"
+            >
+              Watch Demo
+            </Button>
+          </motion.div>*/}
+        </motion.div>
 
-          <button className="px-8 py-4 bg-blue-600 text-white rounded-lg text-lg font-medium hover:bg-blue-700 transition shadow-lg">
-            Get started
-          </button>
-        </div>
-      </main>
-    </div>
+        {/* Trust Indicators */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+          className="mt-16 flex items-center justify-center gap-8 text-muted-foreground/60"
+        >
+          <span className="font-sans text-sm">AI Powered Dashboard</span>
+          <span className="hidden sm:inline text-muted-foreground/30">|</span>
+          <span className="hidden sm:inline font-sans text-sm">
+            Super Reliable
+          </span>
+          <span className="hidden sm:inline text-muted-foreground/30">|</span>
+          <span className="hidden sm:inline font-sans text-sm">
+            99.9% Uptime
+          </span>
+        </motion.div>
+      </div>
+    </main>
   );
 }

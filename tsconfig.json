@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,12 +15,12 @@
     "jsx": "react-jsx",
     "plugins": [
       {
-        "name": "next"
-      }
+        "name": "next",
+      },
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["./*"],
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -32,9 +28,13 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/dashboard/customers/actions.js", "app/dashboard/reports/page.jsx", "scripts/check-tables.js", "app/dashboard/reports/actions.js", "app/dashboard/tasks/page.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "app/dashboard/customers/actions.js",
+    "app/dashboard/reports/page.jsx",
+    "scripts/check-tables.js",
+    "app/dashboard/reports/actions.js",
+    "app/dashboard/tasks/page.jsx",
+    "components/typing-animation.jsx",
+  ],
+  "exclude": ["node_modules"],
 }
