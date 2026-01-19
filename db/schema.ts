@@ -1,10 +1,12 @@
 import {
-    sqliteTable,
+    pgTable,
     text,
     integer,
-} from "drizzle-orm/sqlite-core";
+    timestamp,
+    boolean,
+} from "drizzle-orm/pg-core";
 
-export const customers = sqliteTable("customers", {
+export const customers = pgTable("customers", {
     id: text("id").primaryKey(),
 
     customerType: text("customer_type").notNull(),
@@ -40,87 +42,87 @@ export const customers = sqliteTable("customers", {
 
     // Ownership / auditing
     createdBy: text("created_by"), // supabase auth.users.id
-    createdAt: integer("created_at", { mode: 'timestamp' })
+    createdAt: timestamp("created_at")
         .defaultNow()
         .notNull(),
-    updatedAt: integer("updated_at", { mode: 'timestamp' })
+    updatedAt: timestamp("updated_at")
         .defaultNow()
         .notNull(),
 });
 
-export const projects = sqliteTable("projects", {
+export const projects = pgTable("projects", {
     id: text("id").primaryKey(),
     name: text("name").notNull(),
     description: text("description"),
     customerId: text("customer_id").references(() => customers.id).notNull(),
     status: text("status").default("active").notNull(),
     priority: text("priority").default("medium"),
-    startDate: integer("start_date", { mode: 'timestamp' }),
-    endDate: integer("end_date", { mode: 'timestamp' }),
+    startDate: timestamp("start_date"),
+    endDate: timestamp("end_date"),
     budget: integer("budget"),
     notes: text("notes"),
 
     // Ownership / auditing
     createdBy: text("created_by"),
-    createdAt: integer("created_at", { mode: 'timestamp' })
+    createdAt: timestamp("created_at")
         .defaultNow()
         .notNull(),
-    updatedAt: integer("updated_at", { mode: 'timestamp' })
+    updatedAt: timestamp("updated_at")
         .defaultNow()
         .notNull(),
 });
 
-export const invoices = sqliteTable("invoices", {
+export const invoices = pgTable("invoices", {
     id: text("id").primaryKey(),
     invoiceNumber: text("invoice_number").notNull(),
     customerId: text("customer_id").references(() => customers.id).notNull(),
     projectId: text("project_id").references(() => projects.id),
     amount: integer("amount").notNull(), // Stored in cents
     status: text("status").default("draft").notNull(),
-    issueDate: integer("issue_date", { mode: 'timestamp' }).notNull(),
-    dueDate: integer("due_date", { mode: 'timestamp' }),
+    issueDate: timestamp("issue_date").notNull(),
+    dueDate: timestamp("due_date"),
     description: text("description"),
     notes: text("notes"),
 
     // Ownership / auditing
     createdBy: text("created_by"),
-    createdAt: integer("created_at", { mode: 'timestamp' })
+    createdAt: timestamp("created_at")
         .defaultNow()
         .notNull(),
-    updatedAt: integer("updated_at", { mode: 'timestamp' })
+    updatedAt: timestamp("updated_at")
         .defaultNow()
         .notNull(),
 });
 
-export const taskColumns = sqliteTable("task_columns", {
+export const taskColumns = pgTable("task_columns", {
     id: text("id").primaryKey(),
     title: text("title").notNull(),
     position: integer("position").notNull(),
-    createdAt: integer("created_at", { mode: 'timestamp' })
+    createdAt: timestamp("created_at")
         .defaultNow()
         .notNull(),
-    updatedAt: integer("updated_at", { mode: 'timestamp' })
+    updatedAt: timestamp("updated_at")
         .defaultNow()
         .notNull(),
 });
 
-export const tasks = sqliteTable("tasks", {
+export const tasks = pgTable("tasks", {
     id: text("id").primaryKey(),
     title: text("title").notNull(),
     description: text("description"),
     assignee: text("assignee"),
-    dueDate: integer("due_date", { mode: 'timestamp' }),
+    dueDate: timestamp("due_date"),
     priority: text("priority").default("medium").notNull(),
     columnId: text("column_id").references(() => taskColumns.id).notNull(),
     position: integer("position").notNull(),
-    archived: integer("archived", { mode: 'boolean' }).default(false).notNull(),
+    archived: boolean("archived").default(false).notNull(),
 
     // Ownership / auditing
     createdBy: text("created_by"),
-    createdAt: integer("created_at", { mode: 'timestamp' })
+    createdAt: timestamp("created_at")
         .defaultNow()
         .notNull(),
-    updatedAt: integer("updated_at", { mode: 'timestamp' })
+    updatedAt: timestamp("updated_at")
         .defaultNow()
         .notNull(),
 });
