@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db"
 import { tasks, taskColumns } from "@/db/schema"
-import { eq, asc, desc } from "drizzle-orm"
+import { eq, asc, max } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 
 export async function getTaskColumns() {
@@ -24,9 +24,9 @@ export async function getTaskColumns() {
                     ...column,
                     tasks: columnTasks.map(task => ({
                         ...task,
-                        dueDate: task.dueDate ? task.dueDate.toISOString().split('T')[0] : null,
-                        createdAt: task.createdAt.toISOString(),
-                        updatedAt: task.updatedAt.toISOString(),
+                        dueDate: task.dueDate ? task.dueDate.toString().split('T')[0] : null,
+                        createdAt: task.createdAt.toString(),
+                        updatedAt: task.updatedAt.toString(),
                     }))
                 }
             })
@@ -43,7 +43,7 @@ export async function createTask(formData) {
     try {
         // Get the highest position in the target column
         const [{ maxPosition }] = await db
-            .select({ maxPosition: tasks.position })
+            .select({ maxPosition: max(tasks.position) })
             .from(tasks)
             .where(eq(tasks.columnId, formData.columnId))
 
@@ -148,7 +148,7 @@ export async function createColumn(title) {
     try {
         // Get the highest position
         const [{ maxPosition }] = await db
-            .select({ maxPosition: taskColumns.position })
+            .select({ maxPosition: max(taskColumns.position) })
             .from(taskColumns)
 
         const columnData = {

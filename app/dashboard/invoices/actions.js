@@ -35,10 +35,10 @@ export async function getInvoices() {
             customerName: invoice.customerType === 'business'
                 ? invoice.customerBusinessName
                 : `${invoice.customerFirstName || ''} ${invoice.customerLastName || ''}`.trim(),
-            issueDate: invoice.issueDate ? invoice.issueDate.toISOString().split('T')[0] : null,
-            dueDate: invoice.dueDate ? invoice.dueDate.toISOString().split('T')[0] : null,
-            createdDate: invoice.createdDate.toISOString().split('T')[0],
-            updatedDate: invoice.updatedDate.toISOString().split('T')[0],
+            issueDate: invoice.issueDate ? invoice.issueDate.toString().split('T')[0] : null,
+            dueDate: invoice.dueDate ? invoice.dueDate.toString().split('T')[0] : null,
+            createdDate: invoice.createdDate.toString().split('T')[0],
+            updatedDate: invoice.updatedDate.toString().split('T')[0],
         }))
     } catch (error) {
         console.error("Error fetching invoices:", error)

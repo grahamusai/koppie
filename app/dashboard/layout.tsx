@@ -7,8 +7,8 @@ import ProtectedRoute from '@/components/protected-route'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Dashboard | Next.js + Tailwind',
-    description: 'A responsive dashboard built with Next.js and Tailwind CSS',
+    title: 'Dashboard | Manage your invoices',
+    description: 'Manage your invoices',
 }
 
 export default function DashboardLayout({

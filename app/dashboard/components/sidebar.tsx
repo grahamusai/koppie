@@ -1,7 +1,6 @@
 'use client'
 
 import { useAuth } from '@/lib/auth-context'
-import React from 'react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -13,7 +12,6 @@ import {
   Settings,
   FileText,
   Calendar,
-  CreditCard,
   HelpCircle,
   LogOut,
   Menu,
@@ -33,7 +31,7 @@ const navigation = [
 ]
 
 export default function Sidebar() {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
 
   const handleSignOut = async () => {
     await signOut()
@@ -64,8 +62,8 @@ export default function Sidebar() {
                 </div>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-white">John Doe</p>
-                <p className="text-xs text-gray-400 truncate">john.doe@example.com</p>
+                <p className="text-sm font-semibold text-white">{user?.email || 'User'}</p>
+                <p className="text-xs text-gray-400 truncate">{user?.email}</p>
               </div>
             </div>
           </div>
@@ -130,8 +128,8 @@ export default function Sidebar() {
                   </div>
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-white">John Doe</p>
-                  <p className="text-xs text-gray-400 truncate">john.doe@example.com</p>
+                  <p className="text-sm font-semibold text-white">{user?.email || 'User'}</p>
+                  <p className="text-xs text-gray-400 truncate">{user?.email}</p>
                 </div>
               </div>
               <button

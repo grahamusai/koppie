@@ -33,10 +33,10 @@ export async function getProjects() {
             customerName: p.customerType === 'business' 
                 ? p.customerBusinessName 
                 : `${p.customerFirstName || ''} ${p.customerLastName || ''}`.trim(),
-            startDate: p.startDate ? p.startDate.toISOString().split('T')[0] : null,
-            endDate: p.endDate ? p.endDate.toISOString().split('T')[0] : null,
-            createdDate: p.createdDate.toISOString().split('T')[0],
-            updatedDate: p.updatedDate.toISOString().split('T')[0],
+            startDate: p.startDate ? p.startDate.toString().split('T')[0] : null,
+            endDate: p.endDate ? p.endDate.toString().split('T')[0] : null,
+            createdDate: p.createdDate.toString().split('T')[0],
+            updatedDate: p.updatedDate.toString().split('T')[0],
         }))
     } catch (error) {
         console.error("Error fetching projects:", error)

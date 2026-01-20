@@ -179,6 +179,10 @@ export async function getReportsData() {
                     month: String(item.month),
                     count: item.count,
                 })),
+                customerType: [
+                    { type: 'Business', count: customerStats[0].business },
+                    { type: 'Individual', count: customerStats[0].individual },
+                ],
                 projectStatus: projectStatusData.map(item => ({
                     status: item.status,
                     count: item.count,
@@ -187,9 +191,18 @@ export async function getReportsData() {
                     status: item.status,
                     count: item.count,
                 })),
+                monthlyInvoices: monthlyInvoices.map(item => ({
+                    month: item.month,
+                    amount: item.amount ? Number(item.amount) / 100 : 0, // Convert from cents
+                    count: item.total,
+                })),
                 revenueByMonth: monthlyInvoices.map(item => ({
                     month: item.month,
                     amount: item.amount ? Number(item.amount) / 100 : 0, // Convert from cents
+                })),
+                taskPriority: taskPriorityData.map(item => ({
+                    priority: item.priority,
+                    count: item.count,
                 })),
                 taskCompletion: taskCompletion.map(item => ({
                     month: String(item.month),
@@ -200,21 +213,21 @@ export async function getReportsData() {
             recent: {
                 customers: recentCustomers.map(c => ({
                     ...c,
-                    createdAt: c.createdAt.toISOString().split('T')[0],
+                    createdAt: c.createdAt.toString().split('T')[0],
                 })),
                 projects: recentProjects.map(p => ({
                     ...p,
-                    createdAt: p.createdAt.toISOString().split('T')[0],
+                    createdAt: p.createdAt.toString().split('T')[0],
                 })),
                 invoices: recentInvoices.map(i => ({
                     ...i,
                     amount: i.amount ? Number(i.amount) / 100 : 0, // Convert from cents
-                    issueDate: i.issueDate ? i.issueDate.toISOString().split('T')[0] : null,
-                    createdAt: i.createdAt.toISOString().split('T')[0],
+                    issueDate: i.issueDate ? i.issueDate.toString().split('T')[0] : null,
+                    createdAt: i.createdAt.toString().split('T')[0],
                 })),
                 tasks: recentTasks.map(t => ({
                     ...t,
-                    createdAt: t.createdAt.toISOString().split('T')[0],
+                    createdAt: t.createdAt.toString().split('T')[0],
                 })),
             },
         }

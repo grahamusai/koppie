@@ -210,7 +210,7 @@ export default function NewInvoiceForm({ customers, projects }: NewInvoiceFormPr
                             id="issueDate"
                             name="issueDate"
                             type="date"
-                            defaultValue={new Date().toISOString().split('T')[0]}
+                            defaultValue={new Date().toString().split('T')[0]}
                             required
                         />
                     </div>
