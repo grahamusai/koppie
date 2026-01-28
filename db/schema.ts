@@ -77,11 +77,15 @@ export const invoices = sqliteTable("invoices", {
     customerId: text("customer_id").references(() => customers.id).notNull(),
     projectId: text("project_id").references(() => projects.id),
     amount: integer("amount").notNull(), // Stored in cents
-    status: text("status").default("draft").notNull(),
+    status: text("status", {enum: ['draft', 'sent', 'due', 'overdue', 'paid']}).default("draft").notNull(),
     issueDate: text("issue_date").notNull(),
-    dueDate: text("due_date"),
+    dueDate: integer('due_date', { mode: 'timestamp' }).notNull(),
     description: text("description"),
     notes: text("notes"),
+    
+    // Reminder tracking
+    lastReminderSent: integer('last_reminder_sent', { mode: 'timestamp' }),
+    reminderCount: integer('reminder_count').default(0),
 
     // Ownership / auditing
     createdBy: text("created_by"),
@@ -91,6 +95,13 @@ export const invoices = sqliteTable("invoices", {
     updatedAt: text("updated_at")
         .default("CURRENT_TIMESTAMP")
         .notNull(),
+});
+
+export const reminderLog = sqliteTable('reminder_log', {
+  id: integer('id').primaryKey(),
+  invoiceId: integer('invoice_id').notNull().references(() => invoices.id),
+  sentAt: integer('sent_at', { mode: 'timestamp' }).notNull(),
+  reminderType: text('reminder_type').notNull(), // 'first', 'second', etc.
 });
 
 export const taskColumns = sqliteTable("task_columns", {

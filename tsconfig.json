@@ -34,7 +34,7 @@
     "scripts/check-tables.js",
     "app/dashboard/reports/actions.js",
     "app/dashboard/tasks/page.jsx",
-    "components/typing-animation.jsx",
+    "components/typing-animation.jsx", "lib/invoice-status.js", "lib/email.js", "app/api/cron/check-overdue/route.js",
   ],
   "exclude": ["node_modules"],
 }
